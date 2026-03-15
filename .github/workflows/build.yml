@@ -7,7 +7,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-latest]
+        os: [macos-13]
 
     runs-on: ${{ matrix.os }}
 
@@ -25,7 +25,7 @@ jobs:
 
     - name: Build macOS
       if: runner.os == 'macOS'
-      run: pyinstaller --windowed --target-arch x86_64 --name CloudZeroVideoEditor --copy-metadata imageio --copy-metadata imageio-ffmpeg --collect-all moviepy --collect-all proglog --collect-all imageio_ffmpeg cloudzero_video_editor.py
+      run: pyinstaller --windowed --name CloudZeroVideoEditor --copy-metadata imageio --copy-metadata imageio-ffmpeg --collect-all moviepy --collect-all proglog --collect-all imageio_ffmpeg cloudzero_video_editor.py
 
     - name: Upload build
       uses: actions/upload-artifact@v4
