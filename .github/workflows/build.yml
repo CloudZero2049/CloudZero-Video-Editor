@@ -3,13 +3,9 @@ name: Build App
 on: workflow_dispatch
 
 jobs:
-  build:
 
-    strategy:
-      matrix:
-        os: [macos-13]
-
-    runs-on: ${{ matrix.os }}
+  build-macos:
+    runs-on: macos-13
 
     steps:
     - uses: actions/checkout@v4
@@ -24,11 +20,10 @@ jobs:
         pip install pyinstaller
 
     - name: Build macOS
-      if: runner.os == 'macOS'
       run: pyinstaller --windowed --name CloudZeroVideoEditor --copy-metadata imageio --copy-metadata imageio-ffmpeg --collect-all moviepy --collect-all proglog --collect-all imageio_ffmpeg cloudzero_video_editor.py
 
-    - name: Upload build
+    - name: Upload macOS build
       uses: actions/upload-artifact@v4
       with:
-        name: build-${{ runner.os }}
+        name: build-macos
         path: dist/
