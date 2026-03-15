@@ -23,13 +23,9 @@ jobs:
         pip install -r requirements.txt
         pip install pyinstaller
 
-    - name: Build Windows
-      if: runner.os == 'Windows'
-      run: pyinstaller --onefile --noconsole --name CloudZeroVideoEditor --copy-metadata imageio --copy-metadata imageio-ffmpeg --collect-all moviepy --collect-all proglog --collect-all imageio_ffmpeg cloudzero_video_editor.py
-
     - name: Build macOS
       if: runner.os == 'macOS'
-      run: pyinstaller --windowed --name CloudZeroVideoEditor --copy-metadata imageio --copy-metadata imageio-ffmpeg --collect-all moviepy --collect-all proglog --collect-all imageio_ffmpeg cloudzero_video_editor.py
+      run: pyinstaller --windowed --target-arch x86_64 --name CloudZeroVideoEditor --copy-metadata imageio --copy-metadata imageio-ffmpeg --collect-all moviepy --collect-all proglog --collect-all imageio_ffmpeg cloudzero_video_editor.py
 
     - name: Upload build
       uses: actions/upload-artifact@v4
