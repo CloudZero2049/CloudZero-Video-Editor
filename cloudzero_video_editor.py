@@ -1,8 +1,12 @@
 from editor_engine import *
 from editor_GUI import *
 from PySide6.QtWidgets import QApplication
+
+import imageio_ffmpeg
+
 import requests
 import json
+# for mac changed requirements.txt numpy==2.4.3 to numpy==1.26.4
 # 00:01:00.00
 # 01:00
 # 00:04
