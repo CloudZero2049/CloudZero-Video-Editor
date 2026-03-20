@@ -21,7 +21,10 @@ jobs:
   
     - name: Build macOS
       run: arch -x86_64 pyinstaller --windowed --onedir --name CloudZeroVideoEditor --copy-metadata imageio --copy-metadata imageio-ffmpeg --collect-all moviepy --collect-all proglog --collect-all imageio_ffmpeg --collect-all PySide6 cloudzero_video_editor.py
-  
+
+    - name: Zip .app
+      run: ditto -c -k --sequesterRsrc --keepParent dist/CloudZeroVideoEditor.app CloudZeroVideoEditor.zip
+
     - name: Upload macOS build
       uses: actions/upload-artifact@v4
       with:
